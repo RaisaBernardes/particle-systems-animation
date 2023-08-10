@@ -3,6 +3,10 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import * as dat from "dat.gui";
 
+//Texture Loader
+const loader = new THREE.TextureLoader();
+const cross = loader.load("./cross.png");
+
 // Debug
 const gui = new dat.GUI();
 
@@ -24,7 +28,7 @@ for (let i = 0; i < particlesCnt * 3; i++) {
   //posArray[i] = Math.random();
   //posArray[i] = Math.random() - 0.5; //-0.5 put it at the center
   //posArray[i] = (Math.random() - 0.5) * 5
-  posArray[i] = ((Math.random() - 0.5) * 5) * ((Math.random() - 0.5) * 5)
+  posArray[i] = (Math.random() - 0.5) * 5 * ((Math.random() - 0.5) * 5);
 }
 
 particlesGeometry.setAttribute(
@@ -38,9 +42,16 @@ const material = new THREE.PointsMaterial({
   size: 0.005,
 });
 
+const particlesMaterial = new THREE.PointsMaterial({
+  size: 0.005,
+  map: cross,
+  transparent: true,
+  color: 'blue'
+});
+
 // Mesh
 const sphere = new THREE.Points(geometry, material);
-const particlesMesh = new THREE.Points(particlesGeometry, material);
+const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
 scene.add(sphere, particlesMesh);
 
 // Lights
