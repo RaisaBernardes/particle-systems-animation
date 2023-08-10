@@ -23,6 +23,8 @@ const posArray = new Float32Array(particlesCnt * 3);
 for (let i = 0; i < particlesCnt * 3; i++) {
   //posArray[i] = Math.random();
   //posArray[i] = Math.random() - 0.5; //-0.5 put it at the center
+  //posArray[i] = (Math.random() - 0.5) * 5
+  posArray[i] = ((Math.random() - 0.5) * 5) * ((Math.random() - 0.5) * 5)
 }
 
 particlesGeometry.setAttribute(
