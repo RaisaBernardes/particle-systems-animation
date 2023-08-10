@@ -46,7 +46,6 @@ const particlesMaterial = new THREE.PointsMaterial({
   size: 0.005,
   map: cross,
   transparent: true,
-  color: 'blue'
 });
 
 // Mesh
@@ -111,6 +110,7 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.setClearColor(new THREE.Color("#21282a"), 1);
 
 /**
  * Animate
