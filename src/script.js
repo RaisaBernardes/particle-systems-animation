@@ -112,6 +112,19 @@ renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 renderer.setClearColor(new THREE.Color("#21282a"), 1);
 
+
+//Mouse
+
+document.addEventListener('mousemove', animateParticles);
+
+let mouseX = 0;
+let mouseY = 0;
+
+function animateParticles(event){
+    mouseY = event.clientY
+    mouseX = event.clientX
+}
+
 /**
  * Animate
  */
@@ -123,6 +136,13 @@ const tick = () => {
 
   // Update objects
   sphere.rotation.y = 0.5 * elapsedTime;
+  particlesMesh.rotation.y = -.1 * elapsedTime
+
+  if(mouseX > 0) { 
+    particlesMesh.rotation.x = -mouseY * (elapsedTime * 0.00009)
+    particlesMesh.rotation.y = mouseX * (elapsedTime * 0.00009)
+  }
+ 
 
   // Update Orbital Controls
   // controls.update()
